@@ -1,5 +1,11 @@
 extends KinematicBody2D
 
+var InventoryClass = preload("res://Scene/Inventory.tscn")
+
+var inventory = null
+
+var is_menu_open: bool = false
+
 onready var _animated_sprite = $AnimatedSprite
 const ACCELERATION = 500
 const MAX_SPEED = 150
@@ -53,3 +59,15 @@ func _footstep():
 		$Footstep.play()
 	elif not isWalking && is_sound_played:
 		$Footstep.stop()
+		
+func _ready():
+	inventory = InventoryClass.instance()
+	pass
+
+func _input(ev):
+	if Input.is_action_pressed("ui_inventory") and !is_menu_open:
+		add_child(inventory)
+		is_menu_open = true
+	elif Input.is_action_pressed("ui_inventory"):
+		remove_child(inventory)
+		is_menu_open = false
