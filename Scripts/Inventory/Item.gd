@@ -14,7 +14,7 @@ var current_life = 0
 var name = ""
 var description = ""
 
-func _init(item_type, max_life: int, current_life: int, item_name: String, item_description: String, max_quantity: int):
+func _init(item_type,max_life: int,current_life: int,item_name: String,item_description: String,max_quantity: int):
 	self.item_type = item_type
 	self.image = (ItemsImage.ITEMS_IMAGE as Dictionary).get(item_name)
 	self.max_quantity = max_quantity

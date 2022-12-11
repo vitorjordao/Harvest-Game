@@ -1,0 +1,8 @@
+res://Scene/World.tscn
+res://Scripts/Inventory/SlotMemory.gd
+res://Scripts/Player.gd
+res://Scripts/Inventory/ItemDrop.gd
+res://Scripts/World.gd
+res://Scene/Slot.tscn
+res://Scripts/Inventory/Slot.gd
+res://Scene/Inventory.tscn

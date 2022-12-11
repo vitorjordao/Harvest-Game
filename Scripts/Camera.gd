@@ -1,6 +1,6 @@
 extends Camera2D
 
-export var target_path : NodePath
+@export var target_path : NodePath
 
 var target
 

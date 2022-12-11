@@ -2,7 +2,7 @@ extends GridContainer
 
 signal close()
 
-var SlotClass = preload("res://Scene/Slot.tscn")
+var SlotClass: Resource = preload("res://Scene/Slot.tscn")
 
 var slot_list: Array =  []
 
@@ -11,29 +11,29 @@ var item_label = null
 
 func _init():
 	_set_slot_list([
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance(),
-		SlotClass.instance()
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate(),
+		SlotClass.instantiate()
 	], 16)
 	
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("ui_inventory"):
 		_unselect_information_item()
 		emit_signal("close")
@@ -42,9 +42,9 @@ func _input(event):
 	
 func _set_slot_list(slot_list, select_slot = 0):
 	for slot in slot_list:
-		slot.connect("selected_slot", self, "_select_a_slot")
-		slot.connect("get_information_item", self, "_get_information_item")
-		slot.connect("unselect_information_item", self, "_unselect_information_item")
+		slot.connect("selected_slot",Callable(self,"_select_a_slot"))
+		slot.connect("get_information_item",Callable(self,"_get_information_item"))
+		slot.connect("unselect_information_item",Callable(self,"_unselect_information_item"))
 		add_child(slot)
 	
 	self.slot_list = slot_list 
@@ -54,11 +54,13 @@ func _set_slot_list(slot_list, select_slot = 0):
 
 func _select_a_slot(new_slot_selected):
 	slot_selected = new_slot_selected
+	
 	for slot in slot_list:
 		if slot == slot_selected:
+			slot = (slot as Slot)
 			slot.select()
 		else:
-			slot.unselect()
+			slot.deselect()
 			
 func _get_information_item(item):
 	if item == null || item_label != null:
@@ -72,12 +74,12 @@ func _get_information_item(item):
 	label.set("custom_colors/font_color", Color(0.1, 0.1, 0.1))
 	
 	var center_container = CenterContainer.new()
-	center_container.rect_size = Vector2(200, 40)
+	center_container.size = Vector2(200, 40)
 	center_container.add_child(label)
 	
 	item_label = ColorRect.new()
-	item_label.rect_size = Vector2(200, 40)
-	item_label.rect_position = Vector2(-100, -20)
+	item_label.size = Vector2(200, 40)
+	item_label.position = Vector2(-100, -20)
 	item_label.color = Color( 0.870588, 0.721569, 0.529412, 1 )
 	item_label.add_child(center_container)
 	
@@ -99,13 +101,12 @@ func _unselect_information_item():
 		t.set_wait_time(0.3)
 		self.add_child(t)
 		t.start()
-		yield(t, "timeout")
+		await t.timeout
 		
 		item_label = null
 
 func get_item(item, quantity, item_drop):
 	for slot in slot_list:
-		slot = (slot as Slot)
 		var rest = slot.merge_items(item, quantity)
 		
 		if rest == null:

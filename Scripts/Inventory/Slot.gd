@@ -15,30 +15,30 @@ func _init():
 	add_child(label)
 	pass
 
-func _gui_input(event):
+func _gui_input(_event):
 	
 	if Input.is_action_pressed("ui_select") && is_selectable:
 		emit_signal("selected_slot", self)
 	elif Input.is_action_pressed("ui_interact"):
 		emit_signal("get_information_item", self.item)
 		
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("ui_cancel"):
 		emit_signal("unselect_information_item")
 
 func select():
-	self_modulate = Color("ff11ff55")
+	self_modulate = Color("ff11ffff")
 	
-func unselect():
-	self_modulate = Color("ffffff55")
+func deselect():
+	self_modulate = Color("00000000")
 
 
 func set_item(item, quantity):
 	self.item = item
 	var image = item.get_image()
 	texture.texture = image
-	texture.expand = true
-	texture.rect_size = Vector2(40, 40)
+	texture.ignore_texture_size = true
+	texture.size = Vector2(40, 40)
 	set_quantity(quantity)
 	
 	if !texture.get_parent() :
@@ -59,8 +59,8 @@ func unset_item():
 		}
 	
 	return null
-	 
-	
+
+
 func merge_items(item, quantity):
 	var estimated_new_quantity = self.quantity + quantity
 	var is_the_same_item = is_the_same_item(item)

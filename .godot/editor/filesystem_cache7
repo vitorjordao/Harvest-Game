@@ -1,0 +1,30 @@
+0b7126e0c6e86d3ec295a72f5aa6e0bd
+::res://::1670777320
+default_env.tres::Environment::-1::1670777303::0::1::::<><>::
+icon.png::CompressedTexture2D::7459915447565994011::1669513491::1670777224::1::::<><>::
+::res://Objects/::1670777224
+footsteps.wav::AudioStreamWAV::711674807432288506::1669567817::1670777224::1::::<><>::
+hoe.png::CompressedTexture2D::4083095439706069567::1670098497::1670777224::1::::<><>::
+inventory.png::CompressedTexture2D::9003082309409019336::1670091749::1670777224::1::::<><>::
+Main character.png::CompressedTexture2D::1705034594144073692::1669583176::1670777224::1::::<><>::
+tileset-grassland-grass.png::CompressedTexture2D::3036138451384347048::1669584049::1670777224::1::::<><>::
+tileset-grassland-paths.png::CompressedTexture2D::2369360557173623404::1669584049::1670777224::1::::<><>::
+tileset-grassland-props.png::CompressedTexture2D::6554856585811779321::1669584049::1670777224::1::::<><>::
+tileset-grassland-water.png::CompressedTexture2D::3560646348459771310::1669584049::1670777224::1::::<><>::
+::res://Scene/::1670775424
+Inventory.tscn::PackedScene::-1::1670777303::0::1::::<><>::res://Objects/inventory.png<>res://Scripts/Inventory/SlotMemory.gd
+Item.tscn::PackedScene::-1::1670777303::0::1::::<><>::res://Scripts/Inventory/Item.gd
+Slot.tscn::PackedScene::-1::1670777303::0::1::::<><>::res://Scripts/Inventory/Slot.gd
+World.tscn::PackedScene::-1::1670777303::0::1::::<><>::res://Scripts/Player.gd<>res://Scripts/Camera.gd<>res://Objects/tileset-grassland-water.png<>res://Objects/Main character.png<>res://Objects/footsteps.wav<>res://Objects/tileset-grassland-paths.png<>res://Objects/tileset-grassland-grass.png<>res://Scripts/World.gd<>res://Scripts/Inventory/ItemDrop.gd
+::res://Scripts/::1670770366
+Camera.gd::GDScript::-1::1670777303::0::1::::<>Camera2D<>::
+Player.gd::GDScript::-1::1670777303::0::1::::<>CharacterBody2D<>::
+World.gd::GDScript::-1::1670777303::0::1::::<>Node<>::
+::res://Scripts/Inventory/::1670771775
+Item.gd::GDScript::-1::1670777303::0::1::::Item<>RefCounted<>::
+ItemDrop.gd::GDScript::-1::1670777303::0::1::::ItemDrop<>TextureRect<>::
+ItemsImage.gd::GDScript::-1::1670777303::0::1::::ItemsImage<>RefCounted<>::
+Slot.gd::GDScript::-1::1670777303::0::1::::<><>::
+SlotMemory.gd::GDScript::-1::1670777303::0::1::::<>GridContainer<>::
+::res://Scripts/Inventory/ItemsType/::1670775424
+StoneHoe.gd::GDScript::-1::1670777303::0::1::::StoneHoe<>RefCounted<>::
