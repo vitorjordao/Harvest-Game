@@ -20,3 +20,7 @@ margin_right = 98.0
 margin_bottom = 114.0
 columns = 4
 script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0

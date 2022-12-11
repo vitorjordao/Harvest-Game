@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-var InventoryClass = preload("res://Scene/Inventory.tscn")
+var InventoryClass: PackedScene = preload("res://Scene/Inventory.tscn")
 
-var inventory = null
+var inventory: Node2D = null
 
 var is_menu_open: bool = false
 
@@ -62,12 +62,40 @@ func _footstep():
 		
 func _ready():
 	inventory = InventoryClass.instance()
-	pass
+	var slot_manager
+	for child in inventory.get_children():
+			if child.has_signal("close"):
+				slot_manager = child
+	var world_objects = get_parent().get_children()
+	for object in world_objects:
+		if object.has_signal("get_item"):
+			object.connect("get_item", slot_manager, "get_item")
+		
+	
 
 func _input(ev):
 	if Input.is_action_pressed("ui_inventory") and !is_menu_open:
+		for child in inventory.get_children():
+			if child.has_signal("close"):
+				child.connect("close", self, "_close_inventory")
 		add_child(inventory)
+		var t = Timer.new()
+		t.set_wait_time(0.3)
+		self.add_child(t)
+		t.start()
+		yield(t, "timeout")
 		is_menu_open = true
-	elif Input.is_action_pressed("ui_inventory"):
-		remove_child(inventory)
-		is_menu_open = false
+		
+func _close_inventory():
+	for child in inventory.get_children():
+		if child.has_signal("close") && child.is_connected("close", self, "_close_inventory"):
+			child.disconnect("close", self, "_close_inventory")
+
+	remove_child(inventory)
+	var t = Timer.new()
+	t.set_wait_time(0.3)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	
+	is_menu_open = false
