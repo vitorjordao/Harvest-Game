@@ -1,9 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://wg3hwaifypds"]
+[gd_scene load_steps=34 format=3 uid="uid://cv8wi5ypk5j07"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bqy2lb4nhjtjy" path="res://Objects/tileset-grassland-water.png" id="3"]
+[ext_resource type="Script" path="res://Scripts/Inventory/ItemsType/StoneHoe.gd" id="3_8raq2"]
 [ext_resource type="Texture2D" uid="uid://yj6w2jq60seu" path="res://Objects/Main character.png" id="4"]
+[ext_resource type="Script" path="res://Scripts/Inventory/ItemsType/WatermelonSeed.gd" id="4_8f056"]
 [ext_resource type="AudioStream" uid="uid://ke0gegyalvve" path="res://Objects/footsteps.wav" id="5"]
 [ext_resource type="Texture2D" uid="uid://800a0w5lrpbw" path="res://Objects/tileset-grassland-paths.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bjiy0y0xmw0qu" path="res://Objects/tileset-grassland-grass.png" id="7"]
@@ -388,11 +390,16 @@ offset_top = 142.0
 offset_right = 130.0
 offset_bottom = 162.0
 script = ExtResource("10")
-max_life = 100
-current_life = 100
-item_name = "STONE_HOE"
-item_description = "A simple hoe 2"
-max_quantity = 1
+item_resource = ExtResource("3_8raq2")
+quantity = 1
+
+[node name="Watermelon Seed" type="TextureRect" parent="."]
+offset_left = -31.0
+offset_top = 121.0
+offset_right = -11.0
+offset_bottom = 141.0
+script = ExtResource("10")
+item_resource = ExtResource("4_8f056")
 quantity = 1
 
 [node name="TileMap" type="TileMap" parent="."]

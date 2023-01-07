@@ -33,13 +33,19 @@ _global_script_classes=[{
 "class": &"StoneHoe",
 "language": &"GDScript",
 "path": "res://Scripts/Inventory/ItemsType/StoneHoe.gd"
+}, {
+"base": "RefCounted",
+"class": &"WatermelonSeed",
+"language": &"GDScript",
+"path": "res://Scripts/Inventory/ItemsType/WatermelonSeed.gd"
 }]
 _global_script_class_icons={
 "Item": "",
 "ItemDrop": "",
 "ItemsImage": "",
 "Slot": "",
-"StoneHoe": ""
+"StoneHoe": "",
+"WatermelonSeed": ""
 }
 
 [application]

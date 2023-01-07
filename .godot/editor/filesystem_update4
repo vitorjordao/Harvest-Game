@@ -1,8 +1,9 @@
 res://Scene/World.tscn
-res://Scripts/Inventory/SlotMemory.gd
-res://Scripts/Player.gd
-res://Scripts/Inventory/ItemDrop.gd
-res://Scripts/World.gd
 res://Scene/Slot.tscn
-res://Scripts/Inventory/Slot.gd
 res://Scene/Inventory.tscn
+res://Scripts/Inventory/Slot.gd
+res://Scripts/Inventory/ItemsType/StoneHoe.gd
+res://Scripts/Inventory/ItemsType/Seed.gd
+res://Scripts/Inventory/Item.gd
+res://Scripts/Inventory/ItemsType/WatermelonSeed.gd
+res://Scripts/Inventory/ItemsImage.gd

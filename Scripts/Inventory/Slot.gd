@@ -9,11 +9,46 @@ var label = Label.new()
 var quantity = 0
 var item = null
 var is_selectable = true
+var type_accepted_items = [Item.ItemTypes.TOOLS, Item.ItemTypes.SEED]
 
 func _init():
 	label.visible = false
 	add_child(label)
 	pass
+
+	
+func _can_drop_data(_at_position, data):
+	var can_drop = data != null and data.item != null and type_accepted_items.has(data.item.item_type)
+	if(can_drop):
+		var raw_image: CompressedTexture2D = data.item.image
+		var atlas_texture = get_cropped_texture(raw_image)
+		Input.set_custom_mouse_cursor(atlas_texture, 7, Vector2(32, 32))
+	return can_drop
+
+func get_cropped_texture(raw_texture: Texture2D):
+	var image = raw_texture.get_image()
+	image.resize(32, 32)
+	var texture = ImageTexture.new().create_from_image(image)
+	return texture
+
+func _drop_data(_at_position, data):
+	var item = data.item
+	var quantity = data.quantity
+	var from_set_item = data.set_item
+	var from_unset_item = data.unset_item
+	
+	Input.set_custom_mouse_cursor(null, 8)
+	var return_data = merge_items(item, quantity)
+	if(return_data == null):
+		from_unset_item.call()
+		return
+	
+	from_set_item.call(return_data.item, quantity)
+	
+	
+
+func _get_drag_data(_position):
+	return {"item": item, "quantity": quantity, "set_item": set_item, "unset_item": unset_item}
 
 func _gui_input(_event):
 	
